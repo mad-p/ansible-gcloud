@@ -26,7 +26,7 @@
 
 - name: Extract Cloud SDK archive
   unarchive:
-    src: "{{ gcloud_archive_path }}"
+    remote_src: "{{ gcloud_archive_path }}"
     dest: "{{ gcloud_install_path }}"
     creates: "{{ gcloud_install_path }}/google-cloud-sdk"
 
