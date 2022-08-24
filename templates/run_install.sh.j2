@@ -21,7 +21,7 @@ fi
 {% endif %}
 
 {{ gcloud_install_path }}/google-cloud-sdk/install.sh \
-    --quiet \
+    --quiet --install-python false \
     --usage-reporting {{ gcloud_usage_reporting | lower }} \
     {% if gcloud_profile_path %}--rc-path {{ gcloud_profile_path }} {% endif %} \
     --command-completion {{ gcloud_command_completion | lower }} \
