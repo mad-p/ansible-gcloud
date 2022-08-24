@@ -12,11 +12,14 @@
   register: gcloud_st
 
 - name: Get installed Google Cloud SDK version
-  set_fact:
-    gcloud_installed_version: "{{
-      lookup('file', gcloud_install_path
-                     + '/google-cloud-sdk/VERSION') }}"
+  shell: cat "{{ gcloud_install_path }}/google-cloud-sdk/VERSION"
+  register: gcloud_installed_version_contents
   when: gcloud_st.stat.exists
+
+- name: Parse version string
+  set_fact:
+    gcloud_installed_version: "{{ gcloud_installed_version_contents.stdout |trim }}"
+  when: gcloud_installed_version_contents.stdout is defined
 
 - name: Display installed version
   debug:
